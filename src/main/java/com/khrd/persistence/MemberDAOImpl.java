@@ -1,7 +1,5 @@
 package com.khrd.persistence;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,16 +13,6 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Override
-	public List<MemberVO> memberList() {
-		return sqlSession.selectList(namespace+".memberList");
-	}
-
-	@Override
-	public MemberVO memberListByUserId(String userid) {
-		return sqlSession.selectOne(namespace + "memberListByUserId", userid);
-	}
 
 	@Override
 	public MemberVO selectByIdAndPass(MemberVO vo) {
@@ -37,13 +25,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void modify(MemberVO vo) {
-		sqlSession.update(namespace + ".modify", vo);
-	}
-
-	@Override
-	public void remove(String userid) {
-		sqlSession.delete(namespace + ".remove", userid);
+	public MemberVO useridChek(String userid) {
+		return sqlSession.selectOne(namespace + ".useridChek", userid);
 	}
 
 }
