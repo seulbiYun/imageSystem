@@ -16,7 +16,9 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public MemberVO selectByIdAndPass(MemberVO vo) {
+		System.out.println("vo : " + vo);
 		return sqlSession.selectOne(namespace + ".selectByIdAndPass", vo);
+		
 	}
 	
 	@Override

@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="../include/header.jsp"%>
 <style>
 	.err{
 		color:red;
@@ -13,41 +9,39 @@
 	}
 	
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</head>
-<body>
+
 	<form action = "regist" method = "post">
 		<fieldset>
 			<legend>회원가입</legend>
 			<p id = "idP">
 				<label>아이디</label>
-				<input type = "text" name = "userid" placeholder="영문+숫자 6자 이상 15자 이내">
+				<input type = "text" name = "userid" placeholder="영문+숫자 6자 이상 10자 이내" size="20">
 				<button type = "button" id="ok" data-chek = "false">중복확인</button>
 				<span class = "err">※ 아이디를 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>비밀번호</label>
-				<input type = "password" name = "userpw">
+				<input type = "password" name = "userpw"size="20">
 				<span class = "err">※ 비밀번호를 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>비밀번호 확인</label>
-				<input type = "password" name = "pwok">
+				<input type = "password" name = "pwok"size="20">
 				<span class = "err">※ 비밀번호 확인을 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>이름</label>
-				<input type = "text" name = "usernm">
+				<input type = "text" name = "usernm" size="10">
 				<span class = "err">※ 이름을 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>이메일</label>
-				<input type = "email" name = "email">
+				<input type = "email" name = "email"size="50">
 				<span class = "err">※ 이메일을 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>전화번호</label>
-				<input type = "tel" name = "tel">
+				<input type = "tel" name = "tel"size="20">
 				<span class = "err">※ 전화번호를 입력하세요 ※</span>
 			</p>
 			<p>
@@ -67,6 +61,8 @@
 				$(obj).next(".err").css("display","block");
 				//return false;//each함수 나감
 				count++;
+			}else{
+				$(obj).next(".err").css("display","none");
 			}
 		})
 		if(count > 0){
@@ -77,6 +73,8 @@
 		if(userid == ""){
 			$("input[name='userid']").next().next(".err").css("display","block");
 			return false;
+		}else{
+			$("input[name='userid']").next().next(".err").css("display","none");
 		}
 		//비밀번호와 비밀번호 확인이 다를 경우
 		if(userpw != pwok){
@@ -131,5 +129,4 @@
 	})
 </script>	
 	
-</body>
-</html>
+<%@ include file="../include/footer.jsp"%>

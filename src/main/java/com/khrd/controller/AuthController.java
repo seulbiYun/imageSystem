@@ -30,9 +30,11 @@ public class AuthController {
 	public void loginPost(MemberVO vo,Model model) {
 		logger.info("=================== login POST ===================");
 		MemberVO dbVO = service.selectByIdAndPass(vo);
+		logger.info("userid : " + vo);
 		
 		if(dbVO == null) {
 			logger.info("*********************** login POST not user *********************");
+			model.addAttribute("notUser", "로그인에 실패하였습니다.");
 			return;
 		}
 		model.addAttribute("login", dbVO.getUserid());
@@ -43,6 +45,6 @@ public class AuthController {
 		logger.info("=================== logout GET ===================");
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/auth/login";
 	}
 }
