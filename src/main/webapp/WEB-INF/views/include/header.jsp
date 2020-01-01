@@ -25,7 +25,7 @@
 		color:white;
 	}
 	header{
-		width:25%;
+		width:20%;
 		height: 100%;
 		background: #976451;
 		/* padding:20px; */
@@ -35,7 +35,7 @@
 	}
 	div#right{
 		float: left;
-		width: 75%;
+		width: 80%;
 		height: 100%;
 	}
 	section{
@@ -131,15 +131,15 @@
 			<ul id = "h_SubMenu">
 				<c:if test="${Auth == null }">
 					<li>
-						<a href = "auth/login">로그인</a>
+						<a href = "${pageContext.request.contextPath }/auth/login">로그인</a>
 					</li>
 					<li>
-						<a href = "member/reist">회원가입</a>
+						<a href = "${pageContext.request.contextPath }/member/regist">회원가입</a>
 					</li>
 				</c:if>
 				<c:if test="${Auth != null }">
 					<li>
-						<a href = "#" class = "user">${Auth }</a>님 <a href = "auth/logout" class = "loginout">로그아웃</a>
+						<a href = "#" class = "user">${Auth }</a>님 <a href = "/auth/logout" class = "loginout">로그아웃</a>
 					</li>
 					<li>
 						<a href = "">My Gallery</a>

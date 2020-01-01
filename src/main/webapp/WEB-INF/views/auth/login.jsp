@@ -19,7 +19,7 @@
 	p{
 		margin-bottom: 10px;
 	}
-	p:last-child{
+	fieldset p:last-child{
 		text-align: center;
 	}
 	label{
@@ -29,7 +29,7 @@
 		font-size:18px;
 		font-weight: bold;
 	}
-	p:last-child input{
+	fieldset p:last-child input{
 		padding:3px;
 		background-color: #FFC8B4;
 		border: 0.5px solid #976451;
@@ -37,6 +37,11 @@
 		font-weight: bold;
 		color:white;
 		border-radius: 5px;
+	}
+	.err{
+		color:red;
+		font-size: 12px;
+		display: none;
 	}
 </style>
 <section>
@@ -46,10 +51,12 @@
 			<p>
 				<label>아이디</label>
 				<input type = "text" name = "userid">
+				<span class = "err">※ 아이디를 입력하세요 ※</span>
 			</p>
 			<p>
 				<label>비밀번호</label>
 				<input type = "password" name = "userpw">
+				<span class = "err">※ 비밀번호를 입력하세요 ※</span>
 			</p>
 			<p>
 				<input type = "submit" value = "로그인">
@@ -63,4 +70,16 @@
 		<% session.removeAttribute("failLogin"); %>
 	</c:if>
 </section>
+<script>
+	$("form").submit(function(){
+		if($("input[name='userid']").val == ""){
+			$("input[name='userid']").next(".err").css("display","block");
+			return false;
+		}
+		if($("input[name='userpw']").val == ""){
+			$("input[name='userpw']").next(".err").css("display","block");
+			return false;
+		}
+	})
+</script>
 <%@ include file="../include/footer.jsp"%>

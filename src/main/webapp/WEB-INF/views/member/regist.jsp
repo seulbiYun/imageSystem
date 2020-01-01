@@ -7,9 +7,44 @@
 		font-size: 12px;
 		display: none;
 	}
-	
+	form{
+		width:510px;
+	}
+	fieldset{
+		width:400px;
+		margin: 0 auto;
+		padding:15px;
+		border:1px solid #976451;
+	}	
+	legend{
+		color:white;
+		font-size:18px;
+		font-weight: bold;
+	}
+	p{
+		margin-bottom: 10px;
+	}
+	fieldset p:last-child{
+		text-align: center;
+	}
+	label{
+		width:150px;
+		display: inline-block;
+		color:white;
+		font-size:18px;
+		font-weight: bold;
+	}
+	fieldset p:last-child input{
+		padding:3px;
+		background-color: #FFC8B4;
+		border: 0.5px solid #976451;
+		font-size: 16px;
+		font-weight: bold;
+		color:white;
+		border-radius: 5px;
+	}
 </style>
-
+<section>
 	<form action = "regist" method = "post">
 		<fieldset>
 			<legend>회원가입</legend>
@@ -36,7 +71,7 @@
 			</p>
 			<p>
 				<label>이메일</label>
-				<input type = "email" name = "email"size="50">
+				<input type = "email" name = "email"size="30">
 				<span class = "err">※ 이메일을 입력하세요 ※</span>
 			</p>
 			<p>
@@ -49,6 +84,7 @@
 			</p>
 		</fieldset>
 	</form>
+</section>	
 <script>
 	$("form").submit(function(){
 		var userid = $("input[name='userid']").val(); 
