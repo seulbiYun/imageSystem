@@ -13,9 +13,4 @@
 	<select id = "useridChek" resultType="MemberVO">
 		select * from member where userid = #{userid}
 	</select>
-	
-	<!-- image -->
-	<select id="imageList" resultType="MemberVO">
-		select * from image2;
-	</select>
 </mapper>

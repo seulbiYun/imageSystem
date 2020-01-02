@@ -65,7 +65,9 @@
 	</form>
 	<c:if test="${failLogin ==null }">
 		<script>
-			alert("로그인에 실패하였습니다.");
+			$("input=[type='submit']").click(function(){
+				alert("로그인에 실패하였습니다.");
+			})
 		</script>
 		<% session.removeAttribute("failLogin"); %>
 	</c:if>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.ImageMapper">
+	<sql id ="search">
+		<if test = 'searchType=="i"'>
+			where userid like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="n"'>
+			where usernm like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="e"'>
+			where email like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="t"'>
+			where tel like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="in"'>
+			where userid like CONCAT('%',#{keyword},'%') OR usernm like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="ie"'>
+			where userid like CONCAT('%',#{keyword},'%') OR email like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="it"'>
+			where userid like CONCAT('%',#{keyword},'%') OR email like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test = 'searchType=="inet"'>
+			where userid like CONCAT('%',#{keyword},'%') OR usernm like CONCAT('%',#{keyword},'%') OR email like CONCAT('%',#{keyword},'%')OR tel like CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
+	
+	<select id="listAll" resultType="ImageVO">
+		select * from image2
+	</select>
+	
+	<select id="imageList" resultType="ImageVO">
+		select * from image2 order by ino desc
+		limit #{page},#{perPage}
+	</select>
+	
+	<select id="readByIno" resultType="ImageVO">
+		select * from image2 where ino = #{ino}
+	</select>
+	
+	<select id = "listCri" resultType="ImageVO">
+		select * from image2
+		order by ino desc
+		limit #{pageStart},#{perPageNum} 
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(ino) from image2
+	</select>
+	
+	<select id="listSearch" resultType="ImageVO">
+		select * from image2
+		<include refid="search"></include>
+		order by ino desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+		select count(ino) from image2
+		<include refid="search"></include>
+	</select>
+	
+	<insert id="imageRegist">
+		insert into image2(fullname,userid) values (#{fullname},#{userid})
+	</insert>
+	
+	
+</mapper>

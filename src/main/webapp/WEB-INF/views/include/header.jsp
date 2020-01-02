@@ -116,10 +116,11 @@
 <header>
 	<div id = "mainHeader">
 		<p><a href = "/">GALLERY UPLOAD PROJECT</a></p>
+		<input type = "hidden" value = "${Auth }" id = "Auth">
 		<nav>
 			<ul>
 				<li>
-					<a href = "image/listAll">Gallery</a>
+					<a href = "${pageContext.request.contextPath }/image/listAll" id = "gallery">Gallery</a>
 				</li>
 			</ul>
 		</nav>
@@ -139,7 +140,7 @@
 				</c:if>
 				<c:if test="${Auth != null }">
 					<li>
-						<a href = "#" class = "user">${Auth }</a>님 <a href = "/auth/logout" class = "loginout">로그아웃</a>
+						<a href = "#" class = "user">${Auth }</a>님 <a href = "${pageContext.request.contextPath }/auth/logout" class = "loginout">로그아웃</a>
 					</li>
 					<li>
 						<a href = "">My Gallery</a>
@@ -163,5 +164,14 @@
 		}
 		
 		
+	})
+	
+	$("#gallery").click(function(){
+		var auth = $("#Auth").val();
+		if(auth == ""){
+			alert("로그인 하셔야 이용 가능 합니다.");
+			$(this).attr("src","#");
+			return false;
+		}
 	})
 </script>
